@@ -14,9 +14,9 @@ public class Leetcode340 {
         //output=3
         //sliding window and hashmap
         
-        if(s==null||s.length()==0||k==0) return 0;
+        if(s==null||s.length()==0||k==0) return -1;
         Map<Character, Integer> map=new HashMap<>();
-        int le=0, maxLen=0;
+        int le=0, maxLen=-1;
         for(int ri=0;ri<s.length();ri++){
             char c=s.charAt(ri);
             map.put(c, map.getOrDefault(c, 0)+1);
@@ -29,7 +29,9 @@ public class Leetcode340 {
                 }
                 le++;
             }
-            maxLen=Math.max(maxLen, ri-le+1);
+            if(map.size()==k){
+                maxLen=Math.max(maxLen, ri-le+1);
+            }
         }
         return maxLen;
     }
